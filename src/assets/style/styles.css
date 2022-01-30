@@ -1,0 +1,137 @@
+body {
+  font-size: 14px;
+}
+.v-btn,
+button {
+  padding: 12px 8px !important;
+  height: auto !important;
+  box-shadow: none;
+}
+.v-btn.v-size--small {
+  height: 40px !important;
+}
+.v-btn i {
+  font-size: 22px;
+  color: #59585f;
+}
+.v-btn--outlined {
+  border: 1px solid #e6e5e9;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.v-btn__content {
+  text-transform: none;
+  font-size: 14px !important;
+}
+.v-slide-group__prev.v-slide-group__prev--disabled {
+  display: none !important;
+}
+.v-tab {
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: none;
+}
+.theme--light.v-tabs .v-tab--active::before {
+  background: none;
+}
+.theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active),
+.theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon,
+.theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-btn,
+.theme--light.v-tabs > .v-tabs-bar .v-tab--disabled {
+  color: #abaab3;
+}
+.v-text-field {
+  padding-top: 0;
+  margin-top: 0;
+}
+.v-text-field__details {
+  display: none;
+}
+.v-input__slot {
+  margin-bottom: 0;
+}
+.v-text-field--filled > .v-input__control > .v-input__slot,
+.v-text-field--full-width > .v-input__control > .v-input__slot,
+.v-text-field--outlined > .v-input__control > .v-input__slot {
+  min-height: 48px;
+}
+.v-text-field--filled.small > .v-input__control > .v-input__slot,
+.v-text-field--full-width.small > .v-input__control > .v-input__slot,
+.v-text-field--outlined.small > .v-input__control > .v-input__slot {
+  min-height: 40px;
+}
+.v-text-field--outlined .v-label {
+  top: 14px;
+}
+.v-text-field--outlined.small .v-label {
+  top: 11px;
+}
+.v-text-field--outlined .v-label--active {
+  transform: translateY(-18px) scale(0.75);
+}
+.v-text-field--full-width .v-input__prepend-outer,
+.v-text-field--full-width .v-input__prepend-inner,
+.v-text-field--full-width .v-input__append-inner,
+.v-text-field--full-width .v-input__append-outer,
+.v-text-field--enclosed .v-input__prepend-outer,
+.v-text-field--enclosed .v-input__prepend-inner,
+.v-text-field--enclosed .v-input__append-inner,
+.v-text-field--enclosed .v-input__append-outer {
+  margin-top: 9px;
+}
+.v-text-field--outlined fieldset {
+  background: #ffffff;
+  border: 1px solid #e6e5e9;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.v-pagination__navigation,
+.v-pagination__item {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: auto;
+  line-height: 1;
+  font-size: 12px;
+  padding: 0 !important;
+  box-shadow: none;
+  border: 1px solid #e6e5e9;
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin: 0 4px;
+}
+.v-pagination__navigation {
+  background: #e6e5e9 !important;
+}
+.v-icon.notranslate.mdi.mdi-menu-down.theme--light::before {
+  content: '\e960';
+  font-family: 'coolicons' !important;
+  color: #59585f;
+}
+.v-text-field--full-width .v-input__prepend-outer,
+.v-text-field--full-width .v-input__prepend-inner,
+.v-text-field--full-width .v-input__append-inner,
+.v-text-field--full-width .v-input__append-outer,
+.v-text-field--enclosed .v-input__prepend-outer,
+.v-text-field--enclosed .v-input__prepend-inner,
+.v-text-field--enclosed .v-input__append-inner,
+.v-text-field--enclosed .v-input__append-outer {
+  margin-top: 11px;
+}
+.v-radio {
+  width: 100%;
+  padding: 16px 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid #e6e5e9;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.v-radio input {
+  width: 24px !important;
+  height: 24px !important;
+  border: 1px solid #abaab3;
+}
+.v-input--selection-controls .v-input__slot > .v-label,
+.v-input--selection-controls .v-radio > .v-label {
+  color: #000000;
+}

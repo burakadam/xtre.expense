@@ -1,8 +1,16 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue, { createApp, h } from 'vue';
+import App from './App.vue';
+import vuetify from './plugins/vuetify';
+import UniqueId from 'vue-unique-id';
 
-Vue.config.productionTip = false
+import './assets/coolicons/coolicons.css';
+import './assets/style/fonts.css';
+import './assets/style/styles.css';
+import './input.css';
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+Vue.use(UniqueId);
+
+createApp({
+  vuetify,
+  render: () => h(App),
+}).mount('#app');
