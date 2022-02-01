@@ -1,4 +1,4 @@
-import Vue, { createApp, h } from 'vue';
+import Vue from 'vue';
 import App from './App.vue';
 import vuetify from './plugins/vuetify';
 import UniqueId from 'vue-unique-id';
@@ -10,7 +10,7 @@ import './input.css';
 
 Vue.use(UniqueId);
 
-createApp({
+new Vue({
   vuetify,
-  render: () => h(App),
-}).mount('#app');
+  render: (h) => h(App),
+}).$mount('#app');
