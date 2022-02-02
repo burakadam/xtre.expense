@@ -27,7 +27,7 @@
     </div>
     <!-- FİLTRE MODALI -->
     <modal
-      v-show="isFilterModalVisibile"
+      v-if="isFilterModalVisibile"
       @close="closeFilterModal"
       title="Filter By"
     >
@@ -50,7 +50,7 @@
     </modal>
     <!-- FİLTRE MODALI -->
     <!-- SORT MODALI -->
-    <modal v-show="isSortModalVisibile" @close="closeSortModal" title="Sort By">
+    <modal v-if="isSortModalVisibile" @close="closeSortModal" title="Sort By">
       <template v-slot:body>
         <v-radio-group v-model="radioGroup">
           <v-radio

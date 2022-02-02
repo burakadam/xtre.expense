@@ -135,3 +135,10 @@ button {
 .v-input--selection-controls .v-radio > .v-label {
   color: #000000;
 }
+
+.theme--light.v-icon {
+  color: #000000;
+}
+.v-application p {
+  margin-bottom: unset;
+}

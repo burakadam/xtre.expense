@@ -8883,6 +8883,11 @@
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.14.tgz"
   "version" "2.6.14"
 
+"vue2-teleport@^1.0.1":
+  "integrity" "sha512-hbY/Q0x8qXGFxo6h4KU4YYesUcN+uUjliqqC0PoNSgpcbS2QRb3qXi+7XMTgLYs0a8i7o1H6Mu43UV4Vbgkhgw=="
+  "resolved" "https://registry.npmjs.org/vue2-teleport/-/vue2-teleport-1.0.1.tgz"
+  "version" "1.0.1"
+
 "vuetify-loader@^1.7.0":
   "integrity" "sha512-1Kt6Rfvuw3i9BBlxC9WTMnU3WEU7IBWQmDX+fYGAVGpzWCX7oHythUIwPCZGShHSYcPMKSDbXTPP8UvT5RNw8Q=="
   "resolved" "https://registry.npmjs.org/vuetify-loader/-/vuetify-loader-1.7.3.tgz"

@@ -32,36 +32,10 @@
     </v-tabs-items>
     <!--TAB İÇERİKLERİ -->
     <!-- YENI EXPENSE MODALI -->
-    <modal
-      v-show="newFormModal"
-      @close="closeNewFormModal"
-      title="Create a new Form"
-    >
-      <template v-slot:header>
-        <button text class="underline text-blue-500">Save Form</button>
-      </template>
-      <template v-slot:body>
-        <div class="mb-16x">
-          <select-box />
-        </div>
-        <div class="mb-16x">
-          <v-text-field
-            label="Expense Form ID"
-            disabled
-            value="GMER2939040520031"
-            persistent-hint
-            outlined
-          ></v-text-field>
-        </div>
-        <div class="mb-16x">
-          <v-text-field
-            label="Description"
-            persistent-hint
-            outlined
-          ></v-text-field>
-        </div>
-      </template>
-    </modal>
+    <create-expense-form
+      ref="newExpenseFormRef"
+      @saveForm="addNewExpenseToTheList"
+    />
     <!-- YENI EXPENSE MODALI -->
   </layout>
 </template>
@@ -69,13 +43,18 @@
 <script>
 import CardList from "./components/Expense/CardList/CardList.vue";
 import FiltersBar from "./components/FiltersBar/FiltersBar.vue";
-import SelectBox from "./components/Form/SelectBox/SelectBox.vue";
 import Layout from "./components/Layout/Layout.vue";
-import Modal from "./components/Modal/Modal.vue";
+
+import CreateExpenseForm from "./containers/NewExpense/CreateExpenseForm.vue";
 
 export default {
   name: "App",
-  components: { Layout, FiltersBar, CardList, Modal, SelectBox },
+  components: {
+    Layout,
+    FiltersBar,
+    CardList,
+    CreateExpenseForm,
+  },
   data: () => ({
     tab: null,
     data: [
@@ -120,16 +99,25 @@ export default {
         statue: "pending",
       },
     ],
-    newFormModal: true,
+
     wbsOrClientList: ["WBS or Client ID", "Foo", "Bar"],
     wbsOrClientListModal: "WBS or Client ID",
   }),
   methods: {
     showNewFormModal() {
-      this.newFormModal = true;
+      this.$refs.newExpenseFormRef.showNewFormModal();
     },
-    closeNewFormModal() {
-      this.newFormModal = false;
+    addNewExpenseToTheList() {
+      //DUMMY DATA
+      const dummy = {
+        id: 10,
+        title: "Is Bankasi",
+        subTitle: "GMER2022010002",
+        date: "18.01.2022",
+        price: "0,00 TL",
+        statue: "draft",
+      };
+      this.data = [dummy, ...this.data];
     },
   },
 };
