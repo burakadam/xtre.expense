@@ -18,8 +18,14 @@ module.exports = {
         '40x': '40px',
         '48x': '48px',
         '64x': '64px',
+        '72x': '72px',
+        '96x': '96px',
         '111x': '111px',
         '90p': '90%',
+        '-50p': '-50%',
+      },
+      translate: {
+        '-50p': '-50%',
       },
     },
     colors: {
@@ -33,9 +39,12 @@ module.exports = {
         30: '#E6E5E9',
         50: '#ABAAB3',
         100: '#F2F2F2',
+        300: '#59585F',
         400: '#2C2B32',
       },
       blue: {
+        50: '#ECFAFD',
+        300: '#2D84D5',
         500: '#0037FF',
       },
       yellow: {
@@ -56,9 +65,11 @@ module.exports = {
       ss: '8px',
       smb: '12px',
       md: '24px',
+      full: '100%',
     },
     boxShadow: {
       sm: '0px 2px 8px rgba(0, 0, 0, 0.08)',
+      smt: '0px -2px 4px rgba(0, 0, 0, 0.1);',
     },
     fontFamily: {
       medium: ['Avenir-Medium', 'Helvetica'],
@@ -73,6 +84,7 @@ module.exports = {
       lx: ['20px', '27px'],
       lxm: ['22px'],
       lxx: ['24px', '32px'],
+      icon: ['54px'],
     },
   },
   plugins: [],

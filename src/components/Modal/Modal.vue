@@ -28,9 +28,14 @@
             <slot name="header"></slot>
           </div>
         </div>
-        <div class="flex-1 overflow-scroll pb-29x px-20x pt-4x">
+        <!-- <div class="flex-1 overflow-scroll pb-29x px-20x pt-4x">
           <div>
             <slot name="body"></slot>
+          </div>
+        </div> -->
+        <div class="flex-1 overflow-scroll pb-29x pt-4x">
+          <div>
+            <slot name="fullBody"></slot>
           </div>
         </div>
         <slot name="footer"> </slot>

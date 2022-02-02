@@ -9,6 +9,7 @@
         persistent-hint
         outlined
         class="small"
+        @keydown="handleSearchTyping"
       ></v-text-field>
     </div>
     <div class="mx-8x">
@@ -34,32 +35,44 @@
       <template v-slot:header>
         <button text class="underline text-blue-500">Filter Now</button>
       </template>
-      <template v-slot:body>
-        <p class="text-sm text-gray-50 mb-0">FILTER BY STATUS</p>
-        <div class="mb-16x">
-          <CheckBox v-for="item in checks" :key="item.id" :name="item.text" />
-        </div>
-        <p class="text-sm text-gray-50 mb-16x">FILTER BY FORM DETAILS</p>
-        <div class="mb-16x">
-          <v-select :items="items" label="Client" outlined></v-select>
-        </div>
-        <div class="mb-16x">
-          <v-select :items="years" label="Year" outlined></v-select>
+      <template v-slot:fullBody>
+        <div class="px-24x">
+          <p class="text-sm text-gray-50 mb-0">FILTER BY STATUS</p>
+          <div class="mb-16x">
+            <CheckBox v-for="item in checks" :key="item.id" :name="item.text" />
+          </div>
+          <p class="text-sm text-gray-50">FILTER BY FORM DETAILS</p>
+          <div class="my-16x">
+            <select-box
+              :options="items"
+              placeHolder="Client"
+              subTitle="FILTER BY CLIENT"
+            ></select-box>
+          </div>
+          <div class="mb-16x">
+            <select-box
+              :options="years"
+              placeHolder="Year"
+              subTitle="FILTER BY CLIENT"
+            ></select-box>
+          </div>
         </div>
       </template>
     </modal>
     <!-- FİLTRE MODALI -->
     <!-- SORT MODALI -->
     <modal v-if="isSortModalVisibile" @close="closeSortModal" title="Sort By">
-      <template v-slot:body>
-        <v-radio-group v-model="radioGroup">
-          <v-radio
-            v-for="item in sorts"
-            :key="item"
-            :label="item"
-            :value="item"
-          ></v-radio>
-        </v-radio-group>
+      <template v-slot:fullBody>
+        <div class="px-24x">
+          <v-radio-group v-model="radioGroup">
+            <v-radio
+              v-for="item in sorts"
+              :key="item"
+              :label="item"
+              :value="item"
+            ></v-radio>
+          </v-radio-group>
+        </div>
       </template>
     </modal>
     <!-- SORT MODALI -->
@@ -68,10 +81,11 @@
 <script>
 import Modal from "../Modal/Modal.vue";
 import CheckBox from "../../components/Form/CheckBox/CheckBox.vue";
+import SelectBox from "../Form/SelectBox/SelectBox.vue";
 
 export default {
   name: "FiltersBar",
-  components: { Modal, CheckBox },
+  components: { Modal, CheckBox, SelectBox },
   data: () => ({
     search: "",
     isFilterModalVisibile: false,
@@ -95,8 +109,31 @@ export default {
         text: "Draft",
       },
     ],
-    items: ["All", "Foo", "Bar", "Fizz", "Buzz"],
-    years: ["All", "2022", "2021", "2020", "2019"],
+    items: [
+      {
+        id: 2,
+        title: "Is Bankasi",
+      },
+      {
+        id: 3,
+        title: "Vodafone",
+      },
+      {
+        id: 4,
+        title: "Yapi Kredi",
+      },
+      {
+        id: 5,
+        title: "Turkcell",
+      },
+    ],
+    years: [
+      { id: 2, title: "2022" },
+      { id: 3, title: "2021" },
+      { id: 4, title: "2020" },
+      { id: 5, title: "2019" },
+    ],
+
     sorts: [
       "Created (Newest First)",
       "Created (Oldest First)",
@@ -118,6 +155,12 @@ export default {
     },
     closeSortModal() {
       this.isSortModalVisibile = false;
+    },
+    handleSearchTyping(e) {
+      this.$emit("loaderEvent", { loading: true, value: e.target.value });
+      setTimeout(() => {
+        this.$emit("loaderEvent", { loading: false, value: e.target.value });
+      }, 2000);
     },
   },
 };

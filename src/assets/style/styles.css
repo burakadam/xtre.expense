@@ -142,3 +142,21 @@ button {
 .v-application p {
   margin-bottom: unset;
 }
+.xtre-file-input .v-input__icon {
+  width: 72px;
+  height: 72px;
+}
+.xtre-file-input .v-input__prepend-outer {
+  margin: 0;
+}
+.rounded-ss.v-text-field--outlined fieldset {
+  border-radius: 8px;
+}
+
+.v-text-field.v-text-field--enclosed.mt-16x {
+  margin-top: 16px;
+}
+.v-input--checkbox .v-input__slot {
+  display: flex;
+  align-items: flex-start;
+}

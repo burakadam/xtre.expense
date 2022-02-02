@@ -19,15 +19,15 @@
     </div>
     <!-- EXPENSE TABLARI -->
     <!-- FİLTRE BUTONLARI BARI -->
-    <FiltersBar />
+    <FiltersBar @loaderEvent="handleLoading" />
     <!-- FİLTRE BUTONLARI BARI -->
     <!-- TAB İÇERİKLERİ -->
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <card-list :data="data" />
+        <card-list :data="filteredData" :isDataLoading="isDataLoading" />
       </v-tab-item>
       <v-tab-item>
-        <card-list :data="data" />
+        <card-list :data="filteredData" :isDataLoading="isDataLoading" />
       </v-tab-item>
     </v-tabs-items>
     <!--TAB İÇERİKLERİ -->
@@ -44,8 +44,78 @@
 import CardList from "./components/Expense/CardList/CardList.vue";
 import FiltersBar from "./components/FiltersBar/FiltersBar.vue";
 import Layout from "./components/Layout/Layout.vue";
-
 import CreateExpenseForm from "./containers/NewExpense/CreateExpenseForm.vue";
+
+const dummyData = [
+  {
+    id: 1,
+    title: "Is Bankasi",
+    subTitle: "GMER2022010002",
+    date: "18.01.2022",
+    price: "2.450,00 TL",
+    statue: "pending",
+    owner: "Guray",
+    expenses: [
+      {
+        id: 11,
+        title: "Opet",
+        date: "18.01.2022",
+        price: "260,00TL",
+        type: "Akaryakıt",
+      },
+      {
+        id: 12,
+        title: "Rixos Bomonti",
+        date: "18.01.2022",
+        price: "1.250,00TL",
+        type: "Konaklama",
+      },
+      {
+        id: 13,
+        title: "Taxi",
+        date: "18.01.2022",
+        price: "90,00TL",
+        type: "Ulaşım",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Ak Bankasi",
+    subTitle: "GMER2022010002",
+    date: "18.01.2022",
+    price: "2.450,00 TL",
+    statue: "approved",
+    owner: "Guray",
+  },
+  {
+    id: 3,
+    title: "Şeker Bankasi",
+    subTitle: "GMER2022010002",
+    date: "18.01.2022",
+    price: "2.450,00 TL",
+    statue: "approved",
+    owner: "Guray",
+  },
+  {
+    id: 4,
+    title: "Halk Bankasi",
+    subTitle: "GMER2022010002",
+    date: "18.01.2022",
+    price: "2.450,00 TL",
+    statue: "rejected",
+    owner: "Guray",
+  },
+  {
+    id: 5,
+    title: "Demir Bankasi",
+    subTitle: "GMER2022010002",
+    date: "18.01.2022",
+    price: "2.450,00 TL",
+    statue: "rejected",
+    owner: "Guray",
+  },
+];
 
 export default {
   name: "App",
@@ -57,51 +127,11 @@ export default {
   },
   data: () => ({
     tab: null,
-    data: [
-      {
-        id: 1,
-        title: "Is Bankasi",
-        subTitle: "GMER2022010002",
-        date: "18.01.2022",
-        price: "2.450,00 TL",
-        statue: "pending",
-      },
-      {
-        id: 2,
-        title: "Is Bankasi",
-        subTitle: "GMER2022010002",
-        date: "18.01.2022",
-        price: "2.450,00 TL",
-        statue: "approved",
-      },
-      {
-        id: 3,
-        title: "Is Bankasi",
-        subTitle: "GMER2022010002",
-        date: "18.01.2022",
-        price: "2.450,00 TL",
-        statue: "approved",
-      },
-      {
-        id: 4,
-        title: "Is Bankasi",
-        subTitle: "GMER2022010002",
-        date: "18.01.2022",
-        price: "2.450,00 TL",
-        statue: "rejected",
-      },
-      {
-        id: 5,
-        title: "Is Bankasi",
-        subTitle: "GMER2022010002",
-        date: "18.01.2022",
-        price: "2.450,00 TL",
-        statue: "pending",
-      },
-    ],
-
+    filteredData: dummyData,
     wbsOrClientList: ["WBS or Client ID", "Foo", "Bar"],
     wbsOrClientListModal: "WBS or Client ID",
+    isDataLoading: false,
+    searchValue: "",
   }),
   methods: {
     showNewFormModal() {
@@ -116,8 +146,21 @@ export default {
         date: "18.01.2022",
         price: "0,00 TL",
         statue: "draft",
+        owner: "Guray",
+        newAlertOn: true,
       };
       this.data = [dummy, ...this.data];
+    },
+    handleLoading(e) {
+      this.isDataLoading = e.loading;
+      this.searchValue = e.value;
+
+      setTimeout(() => {
+        const result = dummyData.filter(
+          (item) => item.title.toLowerCase().indexOf(this.searchValue) > -1
+        );
+        this.filteredData = result;
+      }, 1000);
     },
   },
 };

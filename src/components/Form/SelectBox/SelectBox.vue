@@ -13,38 +13,49 @@
       :title="placeHolder"
       id="id-select"
     >
-      <template v-slot:body>
-        <div>
-          <v-text-field
-            label="Search"
-            append-icon="ci-search"
-            persistent-hint
-            outlined
-            @keydown="handleInputKeydown"
-          ></v-text-field>
+      <template v-slot:fullBody>
+        <div class="px-24x">
+          <div v-if="isSearchable">
+            <v-text-field
+              label="Search"
+              append-icon="ci-search"
+              persistent-hint
+              outlined
+              @keydown="handleInputKeydown"
+            ></v-text-field>
+          </div>
+          <p v-if="subTitle" class="text-sm text-gray-50">{{ subTitle }}</p>
+          <div v-if="isMulti">
+            <check-box
+              v-for="item in filteredOptions"
+              :key="item.id"
+              :name="item.title"
+            />
+          </div>
+          <v-radio-group v-model="radioGroup" v-else>
+            <v-radio
+              v-for="item in filteredOptions"
+              :key="item.id"
+              :value="item.id"
+            >
+              <template v-slot:label>
+                <div class="flex flex-col">
+                  <p class="text-lm mb-16x">{{ item.title }}</p>
+                  <span class="text-sm text-gray-50">{{ item.subtitle }}</span>
+                </div>
+              </template>
+            </v-radio>
+          </v-radio-group>
         </div>
-        <v-radio-group v-model="radioGroup">
-          <v-radio
-            v-for="item in filteredOptions"
-            :key="item.id"
-            :value="item.id"
-          >
-            <template v-slot:label>
-              <div class="flex flex-col">
-                <p class="text-lm mb-16x">{{ item.title }}</p>
-                <span class="text-sm text-gray-50">{{ item.subtitle }}</span>
-              </div>
-            </template>
-          </v-radio>
-        </v-radio-group>
       </template>
     </modal>
   </div>
 </template>
 <script>
 import Modal from "../../Modal/Modal.vue";
+import CheckBox from "../CheckBox/CheckBox.vue";
 export default {
-  components: { Modal },
+  components: { Modal, CheckBox },
   name: "SelectBox",
   props: {
     placeHolder: {
@@ -55,6 +66,18 @@ export default {
       type: Array,
       require: true,
       default: () => [],
+    },
+    isSearchable: {
+      type: Boolean,
+      default: false,
+    },
+    isMulti: {
+      type: Boolean,
+      default: true,
+    },
+    subTitle: {
+      type: String,
+      default: null,
     },
   },
   data: function () {

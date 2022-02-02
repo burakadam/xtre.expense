@@ -9,27 +9,33 @@
         Save Form
       </button>
     </template>
-    <template v-slot:body>
-      <div class="mb-16x">
-        <select-box :options="wbsOptions" />
-      </div>
-      <div class="mb-16x">
-        <v-text-field
-          label="Expense Form ID"
-          disabled
-          value="GMER2939040520031"
-          persistent-hint
-          outlined
-        ></v-text-field>
-      </div>
-      <div class="mb-16x">
-        <v-text-field
-          label="Description"
-          persistent-hint
-          outlined
-          :error="isDescriptionValidation"
-          @change="handleChange"
-        ></v-text-field>
+    <template v-slot:fullBody>
+      <div class="px-24x">
+        <div class="mb-16x">
+          <select-box
+            :options="wbsOptions"
+            :isMulti="false"
+            :isSearchable="true"
+          />
+        </div>
+        <div class="mb-16x">
+          <v-text-field
+            label="Expense Form ID"
+            disabled
+            value="GMER2939040520031"
+            persistent-hint
+            outlined
+          ></v-text-field>
+        </div>
+        <div class="mb-16x">
+          <v-text-field
+            label="Description"
+            persistent-hint
+            outlined
+            :error="isDescriptionValidation"
+            @change="handleChange"
+          ></v-text-field>
+        </div>
       </div>
     </template>
   </modal>
