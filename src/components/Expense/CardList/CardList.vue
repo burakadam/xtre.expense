@@ -26,6 +26,27 @@
         ></path>
       </svg>
     </div>
+    <div
+      class="bg-red-100 rounded-sx px-16x py-12x flex justify-between items-center mb-16x"
+    >
+      <span class="text-red-500">The form that you choosed is removed</span>
+      <i class="ci-trash_full text-red-500 text-lxm"></i>
+    </div>
+    <div v-if="filters.length > 0">
+      <scroller>
+        <div
+          class="bg-gray-30 h-29x px-8x py-4x mr-8x rounded-smb flex items-center"
+          v-for="(item, index) in filters"
+          :key="index"
+          @click="() => removeFilterItem(index)"
+        >
+          <p>{{ item }}</p>
+          <p class="ml-8x">
+            <i class="ci-close_big text-lm"></i>
+          </p>
+        </div>
+      </scroller>
+    </div>
     <div v-if="data.length > 0">
       <card
         v-for="item in data"
@@ -59,9 +80,12 @@
 </template>
 <script>
 import ResultCard from "../../ResultCard/ResultCard.vue";
+import Scroller from "../../Scroller/Scroller.vue";
 import Card from "../Card/Card.vue";
+
 export default {
-  components: { Card, ResultCard },
+  components: { Card, ResultCard, Scroller },
+
   name: "CardList",
   props: {
     data: {
@@ -72,9 +96,31 @@ export default {
       type: Boolean,
       default: false,
     },
+    filterTags: {
+      type: Array,
+      default: () => [],
+    },
   },
-  data: () => ({
-    page: 1,
-  }),
+  data: function () {
+    return {
+      page: 1,
+      filteringTags: this.filterTags,
+      swiperOption: {
+        autoplay: 3500,
+        setWrapperSize: true,
+        pagination: ".swiper-pagination",
+        paginationClickable: true,
+        mousewheelControl: true,
+        observeParents: true,
+      },
+      swiperSlides: [1, 2, 3, 4, 5],
+      filters: this.filterTags,
+    };
+  },
+  methods: {
+    removeFilterItem(e) {
+      this.filters = this.filters.filter((el, index) => index !== e);
+    },
+  },
 };
 </script>

@@ -1,8 +1,15 @@
 <template>
-  <div>
+  <div class="relative">
+    <button
+      type="button"
+      class="absolute top-0 right-0 p-0 z-50"
+      @click="handleCardActionsOpen"
+    >
+      <i class="ci-more_horizontal text-lx"></i>
+    </button>
+
     <div
-      :class="`expense-card bg-gray-10 rounded-ss mb-16x p-24x relative
- ${statueTypes[statue].class}`"
+      :class="`expense-card bg-gray-10 rounded-ss mb-16x p-24x relative ${statueTypes[statue].class}`"
       @click="handleDetailOpen"
     >
       <h4 class="text-lm">{{ title }}</h4>
@@ -41,12 +48,18 @@
       :expenses="data.expenses"
       @closeDetail="handleDetailClose"
     />
+    <card-actions
+      :cardActionsOpened="cardActionsOpened"
+      @closeActions="handleCardActionsClose"
+    />
   </div>
 </template>
 <script>
 import CardDetail from "../CardDetail/CardDetail.vue";
+import CardActions from "../CardActions/CardActions.vue";
+
 export default {
-  components: { CardDetail },
+  components: { CardDetail, CardActions },
   name: "card",
   props: {
     statue: {
@@ -86,6 +99,7 @@ export default {
       },
 
       isCardDetailOpen: false,
+      cardActionsOpened: false,
     };
   },
   methods: {
@@ -97,6 +111,12 @@ export default {
     },
     handleDetailClose() {
       this.isCardDetailOpen = false;
+    },
+    handleCardActionsOpen() {
+      this.cardActionsOpened = true;
+    },
+    handleCardActionsClose() {
+      this.cardActionsOpened = false;
     },
   },
 };

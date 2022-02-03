@@ -17,9 +17,13 @@
             <v-btn icon class="py-0">
               <img alt="Xtre" src="@/assets/images/settings.svg" />
             </v-btn>
-            <v-btn icon class="py-0">
+            <router-link
+              to="/notifications"
+              icon
+              :class="`py-0 xtre-notify-icon ${isNotification ? 'active' : ''}`"
+            >
               <img alt="Xtre" src="@/assets/images/bell.svg" />
-            </v-btn>
+            </router-link>
           </div>
         </header>
         <slot name="header-slot" />
@@ -35,5 +39,36 @@ import Container from "../Container/Container.vue";
 export default {
   name: "Layout",
   components: { Container },
+  data: () => ({
+    isNotification: false,
+  }),
+  mounted() {
+    setTimeout(() => {
+      this.isNotification = true;
+    }, 500);
+  },
 };
 </script>
+<style>
+.xtre-notify-icon {
+  position: relative;
+}
+
+.xtre-notify-icon:after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  border-radius: 50%;
+  top: 2px;
+  right: 2px;
+  background: #f9432b;
+  transform: scale(0);
+  transition: transform 300ms ease-in-out;
+}
+
+.xtre-notify-icon.active:after {
+  transform: scale(1);
+}
+</style>
