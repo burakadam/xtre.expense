@@ -2,7 +2,7 @@
   <layout>
     <template v-slot:header-slot>
       <div class="flex items-center justify-between">
-        <h1 class="text-lxx">Expenses</h1>
+        <h1 class="text-lxx font-medium">Expenses</h1>
         <v-btn small color="primary" @click="showNewFormModal"
           >Create a new form</v-btn
         >
@@ -11,9 +11,11 @@
     <!-- EXPENSE TABLARI -->
     <div class="px-10x pb-16x border-b border-gray-100">
       <v-tabs v-model="tab">
-        <v-tab>Expense Forms</v-tab>
+        <v-tab class="font-medium">Expense Forms</v-tab>
         <v-tab class="flex-1">
-          <v-badge color="error" content="4">Pending Requests</v-badge>
+          <v-badge color="error" content="4" class="font-medium"
+            >Pending Requests</v-badge
+          >
         </v-tab>
       </v-tabs>
     </div>
@@ -159,7 +161,7 @@ export default {
         owner: "Guray",
         newAlertOn: true,
       };
-      this.data = [dummy, ...this.data];
+      this.filteredData = [dummy, ...this.filteredData];
     },
     handleLoading(e) {
       this.isDataLoading = e.loading;

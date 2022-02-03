@@ -64,7 +64,7 @@
       </div>
       <div class="text-center">
         <p class="text-gray-50">
-          you are viewing <span class="text-gray-400">5</span> items
+          you are viewing <span class="text-gray-400 text-medium">5</span> items
         </p>
       </div>
     </div>

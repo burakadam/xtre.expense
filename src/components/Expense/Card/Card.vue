@@ -14,14 +14,14 @@
     >
       <h4 class="text-lm">{{ title }}</h4>
       <span class="text-gray-50">{{ subTitle }}</span>
-      <p class="mt-16x">
+      <p class="mt-16x font-medium">
         Created on: <span class="text-gray-50">{{ date }}</span>
       </p>
       <div class="flex justify-between items-centers mt-16x">
         <div :class="`expense-card-statue ${statueTypes[statue].class}`">
           <span class="text-sm">{{ statueTypes[statue].text }}</span>
         </div>
-        <p class="mb-0 text-lx">{{ price }}</p>
+        <p class="mb-0 text-lx font-medium">{{ price }}</p>
       </div>
     </div>
     <div

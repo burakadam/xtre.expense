@@ -1,6 +1,6 @@
 <template>
   <Teleport to="#app">
-    <div class="fixed w-screen h-screen z-50 top-0 left-0 flex items-end">
+    <div class="fixed w-screen h-full z-50 top-0 left-0 flex items-end">
       <div
         class="modal-bg bg-gray-0 top-0 left-0 w-full h-full absolute z--1 animate:fadeIn"
         @click="close"
@@ -21,7 +21,7 @@
           >
             <i class="ci-close_big text-lxx"></i>
           </button>
-          <p class="mb-0 text-lm">{{ title }}</p>
+          <h4 class="mb-0 text-lm">{{ title }}</h4>
           <div
             class="absolute right-20x top-0 bottom-0 m-auto p-0 flex items-center justify-end"
           >
@@ -49,7 +49,6 @@ import Teleport from "vue2-teleport";
 export default {
   name: "Modal",
   components: { Teleport },
-
   props: {
     title: {
       type: String,
@@ -62,8 +61,10 @@ export default {
     },
   },
   created: function () {
-    const component = this.$mount();
-    document.getElementById("app").appendChild(component.$el);
+    document.body.classList = "fixed";
+  },
+  beforeDestroy: function () {
+    document.body.classList = "";
   },
 };
 </script>

@@ -31,6 +31,12 @@
       <Container :isPadding="false">
         <slot />
       </Container>
+      <router-link
+        to="/login"
+        class="h-40x w-full bg-red-500 block rounded-smb flex justify-center items-center"
+      >
+        <span class="text-white font-medium">LOGIN</span>
+      </router-link>
     </div>
   </v-app>
 </template>

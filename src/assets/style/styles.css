@@ -160,3 +160,13 @@ button {
   display: flex;
   align-items: flex-start;
 }
+
+body.fixed {
+  position: fixed;
+  height: 100%;
+  overflow: hidden;
+}
+
+input[type='checkbox'] {
+  background-color: transparent;
+}
