@@ -32,11 +32,7 @@
           ></v-select>
         </div>
         <div class="my-16x">
-          <v-text-field
-            label="Date picker will be added"
-            outlined
-            class="rounded-ss mt-16x"
-          ></v-text-field>
+          <Datepicker v-model="time" type="datetime" />
         </div>
         <div class="my-16x">
           <v-text-field
@@ -124,10 +120,11 @@
 import FileLoader from "../../FileLoader/FileLoader.vue";
 import Modal from "../../Modal/Modal.vue";
 import ResultCard from "../../ResultCard/ResultCard.vue";
+import Datepicker from "vuejs-datepicker";
 
 export default {
   name: "AddNewExpense",
-  components: { Modal, FileLoader, ResultCard },
+  components: { Modal, FileLoader, ResultCard, Datepicker },
   props: {
     isNewExpenseOpened: {
       type: Boolean,
@@ -138,6 +135,7 @@ export default {
     categories: ["Restaurant", "Travel"],
     currencies: ["Turkish Lira", "Euro", "Dolar"],
     customerCheckbox: true,
+    time: new Date(),
     addExpenseStep: 0, // 0 - Form, 1 - About to send, 2 - Result
   }),
   methods: {

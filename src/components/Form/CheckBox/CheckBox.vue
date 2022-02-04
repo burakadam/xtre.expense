@@ -3,7 +3,7 @@
     class="flex justify-between items-center py-16x border-b border-gray-100"
   >
     <label :for="$id('field2')" class="text-black text-lm">{{ name }}</label>
-    <input
+    <v-checkbox
       type="checkbox"
       :id="$id('field2')"
       name="vehicle1"
